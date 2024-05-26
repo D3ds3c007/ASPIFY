@@ -1,0 +1,9 @@
+﻿<ArrayOfEntity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Entity Name="Locations">
+    <Properties>
+      <Property name="IdLocation" type="int" isPk="true" />
+      <Property name="Name" type="String" isPk="false" />
+      <Property name="Geom" type="Point" isPk="false" />
+    </Properties>
+  </Entity>
+</ArrayOfEntity>

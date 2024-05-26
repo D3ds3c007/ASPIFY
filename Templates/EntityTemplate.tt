@@ -1,0 +1,37 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="ASPIFY_MVC.DTO" #>
+using System.ComponentModel.DataAnnotations;
+
+namespace Evaluation2.Models
+{
+    public class <#= entity.Name #>
+    {
+<# foreach (Property property in entity.Properties) { #>
+<# if(property.IsPk) { #>
+        [Key]
+<# } #>
+        public <#= property.Type #> <#= property.Name #> { get; set; }
+<# } #>
+<# if(entity.Relationships.Count() >0) { #>
+<# foreach (Relationship relationship in entity.Relationships) { #>
+<# if(relationship.relationName != null) {#>
+<# if(relationship.type == "OneToMany") { #>
+        public virtual ICollection<<#= relationship.targetEntity #>> <#= relationship.targetEntity+'s' #> { get; set; }
+<# } else { #>
+<# Console.WriteLine(entity.Name+relationship.targetEntity);#>
+<# if(relationship.type == "ManyToOne" || (relationship.type == "OneToOne" && entity.Name+relationship.targetEntity != relationship.relationName)){ #>
+        public int <#= relationship.targetEntity #>Id { get; set; }
+<# } #>
+
+        //Navigation Properties
+        public virtual <#= relationship.targetEntity #> <#= relationship.targetEntity #> { get; set; }
+<# }} #>
+<# } #>
+<# } #>
+    }
+
+}

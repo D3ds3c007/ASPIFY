@@ -1,0 +1,64 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="ASPIFY_MVC.DTO" #>
+
+
+using System;
+using System.Collections.Generic;
+using donet_backend_mvc.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace evaluation2.Data;
+
+public partial class evalContext : DbContext
+{
+    public evalContext()
+    {
+    }
+
+    public evalContext(DbContextOptions<evalContext> options)
+        : base(options)
+    {
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+                optionsBuilder.UseNpgsql("Host=localhost;Database=evaluation;Username=postgres;Password=root;");
+                optionsBuilder.UseLazyLoadingProxies();
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        OnModelCreatingPartial(modelBuilder);
+<# foreach(Entity entity in entityCollection.Entities) {#>
+<# if(entity.Relationships.Count > 0) {#>
+<# foreach(Relationship r in entity.Relationships) {#>
+<# if(r.type == "ManyToOne") {#>
+        modelBuilder.Entity<<#=entity.Name#>>()
+            .HasOne(s => s.<#=r.targetEntity#>)
+            .WithMany(st => st.<#=entity.Name+'s'#>)
+            .HasForeignKey(t => t.<#=r.targetEntity#>Id);
+<# } else if(r.type == "OneToOne" && r.relationName != entity.Name+r.targetEntity) {#>
+        modelBuilder.Entity<<#=entity.Name#>>()
+            .HasOne(s => s.<#=r.targetEntity#>)
+            .WithOne(st => st.<#=entity.Name#>)
+            .HasForeignKey<<#=entity.Name#>>(t => t.<#=r.targetEntity#>Id);
+<# } #>
+<# } #>
+<# } #>
+<# }#>
+
+    }
+
+    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+    //all dbset
+
+<# foreach(Entity entity in entityCollection.Entities) {#>
+    public virtual DbSet<<#= entity.Name #>> <#=  entity.Name+'s'#> { get; set; }
+<#}#>
+    
+
+}
