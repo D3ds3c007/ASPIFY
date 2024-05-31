@@ -6,4 +6,10 @@
       <Property name="Geom" type="Point" isPk="false" />
     </Properties>
   </Entity>
+  <Entity Name="Car">
+    <Properties>
+      <Property name="idCar" type="int" isPk="true" />
+      <Property name="BrandName" type="String" isPk="false" />
+    </Properties>
+  </Entity>
 </ArrayOfEntity>

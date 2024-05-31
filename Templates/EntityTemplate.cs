@@ -57,127 +57,147 @@ namespace ASPIFY_MVC.Templates
             
             #line default
             #line hidden
-            this.Write("        public ");
             
             #line 17 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+ else { 
+            
+            #line default
+            #line hidden
+            this.Write("        [Required(ErrorMessage = \"");
+            
+            #line 18 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
+            
+            #line default
+            #line hidden
+            this.Write(" is required and cannot be empty\")]\r\n");
+            
+            #line 19 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("        public ");
+            
+            #line 20 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Type));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 17 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 20 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(property.Name));
             
             #line default
             #line hidden
-            this.Write(" { get; set; }\r\n");
+            this.Write(" { get; set; }\r\n\r\n");
             
-            #line 18 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 22 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 19 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 23 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
  if(entity.Relationships.Count() >0) { 
             
             #line default
             #line hidden
             
-            #line 20 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 24 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
  foreach (Relationship relationship in entity.Relationships) { 
             
             #line default
             #line hidden
             
-            #line 21 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 25 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
  if(relationship.relationName != null) {
             
             #line default
             #line hidden
             
-            #line 22 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 26 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
  if(relationship.type == "OneToMany") { 
             
             #line default
             #line hidden
             this.Write("        public virtual ICollection<");
             
-            #line 23 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 27 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(relationship.targetEntity));
             
             #line default
             #line hidden
             this.Write("> ");
             
-            #line 23 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 27 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(relationship.targetEntity+'s'));
             
             #line default
             #line hidden
             this.Write(" { get; set; }\r\n");
             
-            #line 24 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 28 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
  } else { 
             
             #line default
             #line hidden
             
-            #line 25 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 29 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
  Console.WriteLine(entity.Name+relationship.targetEntity);
             
             #line default
             #line hidden
             
-            #line 26 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 30 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
  if(relationship.type == "ManyToOne" || (relationship.type == "OneToOne" && entity.Name+relationship.targetEntity != relationship.relationName)){ 
             
             #line default
             #line hidden
             this.Write("        public int ");
             
-            #line 27 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 31 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(relationship.targetEntity));
             
             #line default
             #line hidden
             this.Write("Id { get; set; }\r\n");
             
-            #line 28 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 32 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
  } 
             
             #line default
             #line hidden
             this.Write("\r\n        //Navigation Properties\r\n        public virtual ");
             
-            #line 31 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 35 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(relationship.targetEntity));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 31 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 35 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(relationship.targetEntity));
             
             #line default
             #line hidden
             this.Write(" { get; set; }\r\n");
             
-            #line 32 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 36 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
  }} 
             
             #line default
             #line hidden
             
-            #line 33 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 37 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
  } 
             
             #line default
             #line hidden
             
-            #line 34 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
+            #line 38 "D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\Templates\EntityTemplate.tt"
  } 
             
             #line default

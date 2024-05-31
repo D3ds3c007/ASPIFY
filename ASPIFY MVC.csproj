@@ -16,6 +16,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Templates\ContextTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ContextTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Templates\EntityTemplate.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EntityTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Update="Templates\Model.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -32,6 +42,14 @@
     <None Update="Services\TextTemplate.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>TextTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="Templates\ContextTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ContextTemplate.cs</LastGenOutput>
+    </None>
+    <None Update="Templates\EntityTemplate.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>EntityTemplate.cs</LastGenOutput>
     </None>
     <None Update="Templates\Model.tt">
       <Generator>TextTemplatingFileProcessor</Generator>

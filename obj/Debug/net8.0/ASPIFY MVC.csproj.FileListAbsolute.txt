@@ -31,3 +31,4 @@ D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\obj\Debug\net8.0\ref\ASPIFY MVC.dll
 D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\bin\Debug\net8.0\System.CodeDom.dll
 D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\obj\Debug\net8.0\ASPIFY MVC.csproj.AssemblyReference.cache
 D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\obj\Debug\net8.0\ASPIFY MVC.csproj.Up2Date
+D:\Dev\L3\S5\ASPIFY MVC\ASPIFY MVC\obj\Debug\net8.0\ASPIFY MVC.sourcelink.json

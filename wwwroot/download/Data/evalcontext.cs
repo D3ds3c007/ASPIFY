@@ -34,6 +34,7 @@ public partial class evalContext : DbContext
     //all dbset
 
     public virtual DbSet<Locations> Locationss { get; set; }
+    public virtual DbSet<Car> Cars { get; set; }
     
 
 }

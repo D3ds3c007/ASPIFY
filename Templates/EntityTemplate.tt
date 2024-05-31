@@ -14,7 +14,11 @@ namespace Evaluation2.Models
 <# if(property.IsPk) { #>
         [Key]
 <# } #>
+<# else { #>
+        [Required(ErrorMessage = "<#= property.Name #> is required and cannot be empty")]
+<# } #>
         public <#= property.Type #> <#= property.Name #> { get; set; }
+
 <# } #>
 <# if(entity.Relationships.Count() >0) { #>
 <# foreach (Relationship relationship in entity.Relationships) { #>
