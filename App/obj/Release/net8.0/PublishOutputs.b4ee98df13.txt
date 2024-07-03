@@ -1,0 +1,8 @@
+D:\Mobile\ASPIFY\bin\Release\net8.0\publish\ASPIFY MVC.exe
+D:\Mobile\ASPIFY\bin\Release\net8.0\publish\appsettings.Development.json
+D:\Mobile\ASPIFY\bin\Release\net8.0\publish\appsettings.json
+D:\Mobile\ASPIFY\bin\Release\net8.0\publish\ASPIFY MVC.dll
+D:\Mobile\ASPIFY\bin\Release\net8.0\publish\ASPIFY MVC.deps.json
+D:\Mobile\ASPIFY\bin\Release\net8.0\publish\ASPIFY MVC.runtimeconfig.json
+D:\Mobile\ASPIFY\bin\Release\net8.0\publish\ASPIFY MVC.pdb
+D:\Mobile\ASPIFY\bin\Release\net8.0\publish\System.CodeDom.dll

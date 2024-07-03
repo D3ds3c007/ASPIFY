@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "sDmRJEHsAzJyGMoHrYg5MKLSShgbSA+ZIxAN0q/1JKTE43G0r7+DNMx5FTMOfJcH+xr7+L6WUR6TWfAd63DY0Q==",
+  "success": true,
+  "projectFilePath": "D:\\Mobile\\ASPIFY\\App\\ASPIFY MVC.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\prncr\\.nuget\\packages\\system.codedom\\8.0.0\\system.codedom.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

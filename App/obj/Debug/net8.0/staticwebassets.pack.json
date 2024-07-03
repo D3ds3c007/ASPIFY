@@ -1,0 +1,485 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ASPIFY MVC.bundle.scp.css",
+      "PackagePath": "staticwebassets\\ASPIFY MVC.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\css\\codemirror.min.css",
+      "PackagePath": "staticwebassets\\css\\codemirror.min.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\css\\theme.css",
+      "PackagePath": "staticwebassets\\css\\theme.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\dist\\jstree.js",
+      "PackagePath": "staticwebassets\\dist\\jstree.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\dist\\jstree.min.js",
+      "PackagePath": "staticwebassets\\dist\\jstree.min.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\dist\\themes\\default-dark\\32px.png",
+      "PackagePath": "staticwebassets\\dist\\themes\\default-dark\\32px.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\dist\\themes\\default-dark\\40px.png",
+      "PackagePath": "staticwebassets\\dist\\themes\\default-dark\\40px.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\dist\\themes\\default-dark\\style.css",
+      "PackagePath": "staticwebassets\\dist\\themes\\default-dark\\style.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\dist\\themes\\default-dark\\style.min.css",
+      "PackagePath": "staticwebassets\\dist\\themes\\default-dark\\style.min.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\dist\\themes\\default-dark\\throbber.gif",
+      "PackagePath": "staticwebassets\\dist\\themes\\default-dark\\throbber.gif"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\dist\\themes\\default\\32px.png",
+      "PackagePath": "staticwebassets\\dist\\themes\\default\\32px.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\dist\\themes\\default\\40px.png",
+      "PackagePath": "staticwebassets\\dist\\themes\\default\\40px.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\dist\\themes\\default\\style.css",
+      "PackagePath": "staticwebassets\\dist\\themes\\default\\style.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\dist\\themes\\default\\style.min.css",
+      "PackagePath": "staticwebassets\\dist\\themes\\default\\style.min.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\dist\\themes\\default\\throbber.gif",
+      "PackagePath": "staticwebassets\\dist\\themes\\default\\throbber.gif"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\download\\Data\\evalcontext.cs",
+      "PackagePath": "staticwebassets\\download\\Data\\evalcontext.cs"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\download\\models\\Car.cs",
+      "PackagePath": "staticwebassets\\download\\models\\Car.cs"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\download\\models\\Locations.cs",
+      "PackagePath": "staticwebassets\\download\\models\\Locations.cs"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\.gitkeep",
+      "PackagePath": "staticwebassets\\img\\.gitkeep"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\1.png",
+      "PackagePath": "staticwebassets\\img\\1.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\2.png",
+      "PackagePath": "staticwebassets\\img\\2.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\favicons\\android-chrome-192x192.png",
+      "PackagePath": "staticwebassets\\img\\favicons\\android-chrome-192x192.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\favicons\\android-chrome-512x512.png",
+      "PackagePath": "staticwebassets\\img\\favicons\\android-chrome-512x512.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\favicons\\apple-touch-icon.png",
+      "PackagePath": "staticwebassets\\img\\favicons\\apple-touch-icon.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\favicons\\browserconfig.xml",
+      "PackagePath": "staticwebassets\\img\\favicons\\browserconfig.xml"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\favicons\\favicon-16x16.png",
+      "PackagePath": "staticwebassets\\img\\favicons\\favicon-16x16.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\favicons\\favicon-32x32.png",
+      "PackagePath": "staticwebassets\\img\\favicons\\favicon-32x32.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\favicons\\favicon.ico",
+      "PackagePath": "staticwebassets\\img\\favicons\\favicon.ico"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\favicons\\manifest.json",
+      "PackagePath": "staticwebassets\\img\\favicons\\manifest.json"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\favicons\\mstile-150x150.png",
+      "PackagePath": "staticwebassets\\img\\favicons\\mstile-150x150.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\favicons\\site.webmanifest",
+      "PackagePath": "staticwebassets\\img\\favicons\\site.webmanifest"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\gallery\\amazon.png",
+      "PackagePath": "staticwebassets\\img\\gallery\\amazon.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\gallery\\discord.png",
+      "PackagePath": "staticwebassets\\img\\gallery\\discord.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\gallery\\map.png",
+      "PackagePath": "staticwebassets\\img\\gallery\\map.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\gallery\\netflix.png",
+      "PackagePath": "staticwebassets\\img\\gallery\\netflix.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\gallery\\reddit.png",
+      "PackagePath": "staticwebassets\\img\\gallery\\reddit.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\gallery\\spotify.png",
+      "PackagePath": "staticwebassets\\img\\gallery\\spotify.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\gallery\\user-1.png",
+      "PackagePath": "staticwebassets\\img\\gallery\\user-1.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\gallery\\user-2.png",
+      "PackagePath": "staticwebassets\\img\\gallery\\user-2.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\gallery\\user-3.png",
+      "PackagePath": "staticwebassets\\img\\gallery\\user-3.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\icons\\arrow-right-circle-fill.svg",
+      "PackagePath": "staticwebassets\\img\\icons\\arrow-right-circle-fill.svg"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\icons\\facebook-1.svg",
+      "PackagePath": "staticwebassets\\img\\icons\\facebook-1.svg"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\icons\\facebook.svg",
+      "PackagePath": "staticwebassets\\img\\icons\\facebook.svg"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\icons\\instagram.svg",
+      "PackagePath": "staticwebassets\\img\\icons\\instagram.svg"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\icons\\logo.png",
+      "PackagePath": "staticwebassets\\img\\icons\\logo.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\icons\\pricing.png",
+      "PackagePath": "staticwebassets\\img\\icons\\pricing.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\icons\\twitter.svg",
+      "PackagePath": "staticwebassets\\img\\icons\\twitter.svg"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\illustrations\\1.png",
+      "PackagePath": "staticwebassets\\img\\illustrations\\1.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\illustrations\\2.png",
+      "PackagePath": "staticwebassets\\img\\illustrations\\2.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\illustrations\\a-1.png",
+      "PackagePath": "staticwebassets\\img\\illustrations\\a-1.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\illustrations\\a-2.png",
+      "PackagePath": "staticwebassets\\img\\illustrations\\a-2.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\illustrations\\a-3.png",
+      "PackagePath": "staticwebassets\\img\\illustrations\\a-3.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\illustrations\\shape-up.svg",
+      "PackagePath": "staticwebassets\\img\\illustrations\\shape-up.svg"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\img\\logo.png",
+      "PackagePath": "staticwebassets\\img\\logo.png"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\js\\codemirror.min.js",
+      "PackagePath": "staticwebassets\\js\\codemirror.min.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\js\\javascript.min.js",
+      "PackagePath": "staticwebassets\\js\\javascript.min.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\Mobile\\ASPIFY\\App\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ASPIFY MVC.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ASPIFY MVC.props",
+      "PackagePath": "build\\ASPIFY MVC.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ASPIFY MVC.props",
+      "PackagePath": "buildMultiTargeting\\ASPIFY MVC.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ASPIFY MVC.props",
+      "PackagePath": "buildTransitive\\ASPIFY MVC.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

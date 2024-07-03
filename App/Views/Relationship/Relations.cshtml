@@ -1,0 +1,150 @@
+@using ASPIFY_MVC.DTO
+@{
+    Layout = "_DashLayout";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Entity Relationship</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="~/css/theme.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            margin-bottom: 20px; 
+        }
+        .form-group {
+            margin-bottom: 15px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="alertMessage" class="alert" role="alert" style="display: none;"></div>
+
+        <!-- Create Relationship Form -->
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Create Entity Relationship</h2>
+
+                <form id="createRelationshipForm">
+                    <div class="form-group">
+                        <label for="sourceEntity">Source Entity:</label>
+                        <select class="form-control" id="sourceEntity" name="sourceEntity">
+                            @{
+                                foreach(Entity entity in ViewBag.Entities)
+                                {
+                                    <option value="@entity.Name">@entity.Name</option>
+                                }
+                            }
+                            <!-- Add options dynamically from your backend data -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="targetEntity">Target Entity:</label>
+                        <select class="form-control" id="targetEntity" name="targetEntity">
+                             @{
+                                foreach(Entity entity in ViewBag.Entities)
+                                {
+                                    <option value="@entity.Name">@entity.Name</option>
+                                }
+                            }
+                            <!-- Add options dynamically from your backend data -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="relationshipType">Relationship Type:</label>
+                        <select class="form-control" id="relationshipType" name="relationshipType">
+                            <option value="OneToOne">One-to-One</option>
+                            <option value="OneToMany">One-to-Many</option>
+                            <option value="ManyToMany">Many-to-Many</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="form-group card-body d-flex justify-content-between align-items-center">
+                        @* <button type="button" class="btn btn-success" onclick="createRelationship()">Create Relationship</button> *@
+                        <a href=""></a>
+                        <a class="btn btn-lg btn-danger hover-top btn-glow" onclick="addProperty()">Create Relationship</a>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- List of Existing Relationships -->
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Existing Relationships</h2>
+                <ul id="relationshipList" class="list-group">
+                    <!-- List of relationships will appear here -->
+                    @foreach(Relationship relationship in ViewBag.Relationships)
+                    {
+                        <li class="list-group-item"><a href="">@($"{relationship.relationName} ({relationship.type})")</a> 
+                            <button type="button" class="close" aria-label="Close" >
+                                <a href="@($"/relationship/remove-relationship/{relationship.relationName}")">
+                                <span aria-hidden="true">&times;</span>
+                                </a>
+                            </button>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to send relationship data to server as JSON
+        function createRelationship() {
+            var sourceEntity = document.getElementById("sourceEntity").value;
+            var targetEntity = document.getElementById("targetEntity").value;
+            var relationshipType = document.getElementById("relationshipType").value;
+
+            var relationship = {
+                SourceEntity: sourceEntity,
+                TargetEntity: targetEntity,
+                Type: relationshipType
+            };
+
+            console.log(relationship);
+
+            // Send the data to the server as JSON
+            fetch("/relationship/add-relationship", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(relationship)
+            })
+            .then(response => {
+                if (response.ok) {
+                    showAlert("Relationship created successfully!", "alert-success");
+                    window.location.reload();   
+                    return response.json();
+                } else {
+                    showAlert("Error creating relationship.", "alert-danger");
+                    throw new Error("Error creating relationship");
+                }
+            })
+            .then(data => console.log(data))
+            .catch(error => console.error("Error:", error));
+        }
+
+        // Function to show alert messages
+        function showAlert(message, alertClass) {
+            var alertDiv = document.getElementById("alertMessage");
+            alertDiv.className = `alert ${alertClass}`;
+            alertDiv.textContent = message;
+            alertDiv.style.display = "block";
+            setTimeout(() => {
+                alertDiv.style.display = "none";
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
