@@ -54,12 +54,12 @@ jobs:
     - name: Provide passphrase to ssh-add
       run: |
         echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add -
-    - name: Add SSH Key to known host
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H 34.35.59.101 >> ~/.ssh/known_hosts
+    # - name: Add SSH Key to known host
+    #   run: |
+    #     mkdir -p ~/.ssh
+    #     echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+    #     chmod 600 ~/.ssh/id_rsa
+    #     ssh-keyscan -H 34.35.59.101 >> ~/.ssh/known_hosts
     - name: Deploy to server
       run: |
           ssh -v raitrafiorenana_rambeloson@34.35.59.101 'echo "SSH connection successful"'
