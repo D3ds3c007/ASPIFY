@@ -45,4 +45,14 @@ jobs:
     - name: Push Docker image
       run: |
         docker push dedsec007/aspifyapp:version1
+    - name: Set up SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H 34.35.59.101 >> ~/.ssh/known_hosts
+    - name: Deploy to server
+      run: |
+          ssh raitrafiorenana_rambeloson@34.35.59.101 'bash -s' < ./deploy-script.sh
+        
 
