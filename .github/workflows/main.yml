@@ -45,7 +45,13 @@ jobs:
     # - name: Push Docker image
     #   run: |
     #     docker push dedsec007/aspifyapp:version1
+
     - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-passphrase: ${{ secrets.SSH_PASSPHRASE }}
+    - name: Add SSH Key to known host
       run: |
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
