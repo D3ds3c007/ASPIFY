@@ -37,6 +37,7 @@ jobs:
      # Build the Docker image
     - name: Build Docker image
       run: |
+        working-directory: App
         docker build -t aspifyapp:latest .
         docker tag aspifyapp dedsec007/aspifyapp:version1
 
