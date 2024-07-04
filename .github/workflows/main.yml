@@ -79,6 +79,8 @@ jobs:
           echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add ~/.ssh/id_rsa
         
     - name: Deploy to server
+      env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       run: |
           ssh -v raitrafiorenana_rambeloson@34.35.59.101 'echo "SSH connection successful"'
         
