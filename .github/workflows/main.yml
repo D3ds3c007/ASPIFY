@@ -25,7 +25,7 @@ jobs:
       run: dotnet restore
     - name: Build
       working-directory: App
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore --property WarningLevel=0
     - name: Test
       working-directory: App
       run: dotnet test --no-build --verbosity normal
@@ -64,6 +64,6 @@ jobs:
       env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       run: |
-          ssh -v raitrafiorenana_rambeloson@34.35.59.101 'echo "SSH connection successful" && sudo ./deploy-script.sh'
+          ssh  raitrafiorenana_rambeloson@34.35.59.101 'echo "SSH connection successful" && sudo ./deploy-script.sh'
         
 
