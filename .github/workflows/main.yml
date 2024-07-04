@@ -46,13 +46,14 @@ jobs:
     #   run: |
     #     docker push dedsec007/aspifyapp:version1
 
-    - name: Set up SSH
+    - name: Set up SSH and add host to known_hosts
       run: |
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         eval "$(ssh-agent -s)"
         echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add ~/.ssh/id_rsa
+        ssh-keyscan -H 34.35.59.101 >> ~/.ssh/known_hosts
         
     - name: Deploy to server
       run: |
