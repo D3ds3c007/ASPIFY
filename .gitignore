@@ -1,6 +1,6 @@
 # Ignore artifacts, build directories, and compiled files
-bin/
-obj/
+./App/bin/
+./App/obj/
 *.dll
 *.exe
 *.pdb
