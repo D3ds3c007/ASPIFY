@@ -36,8 +36,9 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
      # Build the Docker image
     - name: Build Docker image
+      working-directory: /home/runner/work/ASPIFY/ASPIFY
       run: |
-        docker build -t aspifyapp:latest ./App
+        docker build -t aspifyapp:latest -f App/Dockerfile .
         docker tag aspifyapp dedsec007/aspifyapp:version1
 
       # Push Docker image to Docker Hub
