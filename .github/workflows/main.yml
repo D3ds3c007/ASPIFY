@@ -51,9 +51,14 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        eval "$(ssh-agent -s)"
-        echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add ~/.ssh/id_rsa
         ssh-keyscan -H 34.35.59.101 >> ~/.ssh/known_hosts
+        
+    - name: Add SSH key to agent and provide passphrase
+      env:
+        SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
+      run: |
+        eval "$(ssh-agent -s)"
+        echo "$SSH_PASSPHRASE" | ssh-add ~/.ssh/id_rsa
         
     - name: Deploy to server
       run: |
