@@ -56,7 +56,7 @@ jobs:
     - name: Add SSH key to agent and provide passphrase
       env:
           SSH_PASSPHRASE: ${{secrets.SSH_PASSPHRASE}}
-          SSH_PRIVATE_KEY: ${{secrets.SSH_KEY}}
+          SSH_KEY: ${{secrets.SSH_KEY}}
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       run: |
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
