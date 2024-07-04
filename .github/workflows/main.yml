@@ -53,6 +53,6 @@ jobs:
         ssh-keyscan -H 34.35.59.101 >> ~/.ssh/known_hosts
     - name: Deploy to server
       run: |
-          ssh raitrafiorenana_rambeloson@34.35.59.101
+          ssh -v raitrafiorenana_rambeloson@34.35.59.101 'echo "SSH connection successful"'
         
 
