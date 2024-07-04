@@ -25,7 +25,7 @@ jobs:
       run: dotnet restore
     - name: Build
       working-directory: App
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore --property WarningLevel=0
     - name: Test
       working-directory: App
       run: dotnet test --no-build --verbosity normal
@@ -36,12 +36,34 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
      # Build the Docker image
     - name: Build Docker image
+      working-directory: App
       run: |
-        docker build -t aspifyapp:latest -f App/dockerfile .
+        docker build -t aspifyapp:latest -f DockerFile .
         docker tag aspifyapp dedsec007/aspifyapp:version1
 
       # Push Docker image to Docker Hub
     - name: Push Docker image
       run: |
         docker push dedsec007/aspifyapp:version1
+    - name: Set up SSH and add host to known_hosts
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H 34.35.59.101 >> ~/.ssh/known_hosts
+
+    - name: Add SSH key to agent
+      env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+          SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
+      run: |
+          eval "$(ssh-agent -a $SSH_AUTH_SOCK)"
+          echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add ~/.ssh/id_rsa
+        
+    - name: Deploy to server
+      env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      run: |
+          ssh  raitrafiorenana_rambeloson@34.35.59.101 'echo "SSH connection successful" && sudo ./deploy-script.sh'
+        
 
