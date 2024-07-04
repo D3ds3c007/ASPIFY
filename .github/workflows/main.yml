@@ -36,6 +36,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
      # Build the Docker image
     - name: Build Docker image
+      working-directory: App
       run: |
         docker build -t aspifyapp:latest -f App/DockerFile .
         docker tag aspifyapp dedsec007/aspifyapp:version1
