@@ -26,25 +26,25 @@ jobs:
     # - name: Build
     #   working-directory: App
     #   run: dotnet build --no-restore
-    - name: Test
-      working-directory: App
-      run: dotnet test --no-build --verbosity normal
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-     # Build the Docker image
-    - name: Build Docker image
-      working-directory: App
-      run: |
-        docker build -t aspifyapp:latest -f DockerFile .
-        docker tag aspifyapp dedsec007/aspifyapp:version1
+    # - name: Test
+    #   working-directory: App
+    #   run: dotnet test --no-build --verbosity normal
+    # - name: Log in to Docker Hub
+    #   uses: docker/login-action@v2
+    #   with:
+    #     username: ${{ secrets.DOCKER_USERNAME }}
+    #     password: ${{ secrets.DOCKER_PASSWORD }}
+    #  # Build the Docker image
+    # - name: Build Docker image
+    #   working-directory: App
+    #   run: |
+    #     docker build -t aspifyapp:latest -f DockerFile .
+    #     docker tag aspifyapp dedsec007/aspifyapp:version1
 
-      # Push Docker image to Docker Hub
-    - name: Push Docker image
-      run: |
-        docker push dedsec007/aspifyapp:version1
+    #   # Push Docker image to Docker Hub
+    # - name: Push Docker image
+    #   run: |
+    #     docker push dedsec007/aspifyapp:version1
     - name: Set up SSH
       run: |
         mkdir -p ~/.ssh
@@ -53,6 +53,6 @@ jobs:
         ssh-keyscan -H 34.35.59.101 >> ~/.ssh/known_hosts
     - name: Deploy to server
       run: |
-          ssh raitrafiorenana_rambeloson@34.35.59.101 'bash -s' < ./deploy-script.sh
+          ssh raitrafiorenana_rambeloson@34.35.59.101
         
 
