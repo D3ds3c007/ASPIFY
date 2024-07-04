@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ASPIFY MVC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+85eae11ccaaac4cacef609fe410b8ceea3647220")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7879104c4982083cae777502cd12f9faf682b291")]
 [assembly: System.Reflection.AssemblyProductAttribute("ASPIFY MVC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ASPIFY MVC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
