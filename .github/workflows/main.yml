@@ -38,7 +38,7 @@ jobs:
     - name: Build Docker image
       working-directory: /home/runner/work/ASPIFY/ASPIFY
       run: |
-        docker build -t aspifyapp:latest -f ./App .
+        docker build -t aspifyapp:latest -f ./App/dockerfile .
         docker tag aspifyapp dedsec007/aspifyapp:version1
 
       # Push Docker image to Docker Hub
