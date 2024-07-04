@@ -1,6 +1,3 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: learn-github-actions
 
 on:
@@ -16,35 +13,46 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+
+    - name: Cache .NET packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-dotnet-${{ hashFiles('**/*.csproj') }}
+        restore-keys: |
+          ${{ runner.os }}-dotnet-
+
     - name: Restore dependencies
       working-directory: App
-      run: dotnet restore
-    - name: Build
+      run: dotnet restore --no-cache
+
+    - name: Build and Test
       working-directory: App
-      run: dotnet build --no-restore --property WarningLevel=0
-    - name: Test
-      working-directory: App
-      run: dotnet test --no-build --verbosity normal
+      run: |
+        dotnet build --no-restore --property WarningLevel=0
+        dotnet test --no-build --verbosity normal
+
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-     # Build the Docker image
-    - name: Build Docker image
+
+    - name: Build and Push Docker image
       working-directory: App
       run: |
         docker build -t aspifyapp:latest -f DockerFile .
         docker tag aspifyapp dedsec007/aspifyapp:version1
-
-      # Push Docker image to Docker Hub
-    - name: Push Docker image
-      run: |
         docker push dedsec007/aspifyapp:version1
+
+    # You may consider moving SSH-related operations to a separate workflow
+    #if they are not essential for every build.
+
     - name: Set up SSH and add host to known_hosts
       run: |
         mkdir -p ~/.ssh
@@ -54,16 +62,14 @@ jobs:
 
     - name: Add SSH key to agent
       env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-          SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
+        SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
       run: |
-          eval "$(ssh-agent -a $SSH_AUTH_SOCK)"
-          echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add ~/.ssh/id_rsa
-        
+        eval "$(ssh-agent -a $SSH_AUTH_SOCK)"
+        echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add ~/.ssh/id_rsa
+
     - name: Deploy to server
       env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       run: |
-          ssh  raitrafiorenana_rambeloson@34.35.59.101 'echo "SSH connection successful" && sudo ./deploy-script.sh'
-        
-
+        ssh raitrafiorenana_rambeloson@34.35.59.101 'echo "SSH connection successful" && sudo ./deploy-script.sh'
