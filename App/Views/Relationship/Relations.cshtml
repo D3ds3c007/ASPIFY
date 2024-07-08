@@ -10,8 +10,6 @@
     <title>Create Entity Relationship</title>
     <!-- Bootstrap CSS link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href="~/css/theme.css" rel="stylesheet" />
-
     <style>
         body {
             background-color: #f8f9fa;
@@ -66,12 +64,8 @@
                             <option value="ManyToMany">Many-to-Many</option>
                         </select>
                     </div>
-                    <br>
-                    <div class="form-group card-body d-flex justify-content-between align-items-center">
-                        @* <button type="button" class="btn btn-success" onclick="createRelationship()">Create Relationship</button> *@
-                        <a href=""></a>
-                        <a class="btn btn-lg btn-danger hover-top btn-glow" onclick="addProperty()">Create Relationship</a>
-
+                    <div class="form-group">
+                        <button type="button" class="btn btn-success" onclick="createRelationship()">Create Relationship</button>
                     </div>
                 </form>
             </div>

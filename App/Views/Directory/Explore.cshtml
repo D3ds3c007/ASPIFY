@@ -1,23 +1,17 @@
-@using ASPIFY_MVC.DTO
 @{
     Layout = "_DashLayout";
 }
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Entities Section</title>
-  <!-- Bootstrap CSS link -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link href="~/css/theme.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/dist/themes/default/style.min.css" />
+    <link rel="stylesheet" href="~/css/codemirror.min.css">
+    <title>Directory Listing</title>
 
-  <style>
-    /* Red theme */
-    body {
-      background-color: #f8f9fa;
-    }
-    .download-button {
+    <style>
+        .download-button {
             position: fixed;
             top: 20px;
             right: 20px;
@@ -26,69 +20,7 @@
      /* Custom styling to mimic Visual Studio appearance */
         .CodeMirror {
             margin-top: 5%;
-            @* height: 50%; *@
-            font-size: 14px;
-            background-color: #1e1e1e; /* Dark background */
-            color: #dcdcdc; /* Light text */
-        }
-
-        .CodeMirror-scroll {
-            overflow: auto;
-            line-height: 1.3;
-        }
-
-        .CodeMirror-gutters {
-            background-color: #2d2d2d; /* Darker gutter background */
-            border-right: 1px solid #555;
-        }
-
-        .CodeMirror-linenumber {
-            color: #858585; /* Line number color */
-        }
-
-        /* Additional custom styles */
-        .CodeMirror-cursor {
-            border-left: 1px solid #dcdcdc;
-        }
-
-        /* css style fro code mirror theme */
-        .cm-s-default .cm-header {color: #dcdcdc;}
-        .cm-s-default .cm-quote {color: #dcdcdc;}
-        .cm-s-default .cm-keyword {color: #569CD6;}
-        .cm-s-default .cm-atom {color: #569CD6;}
-        .cm-s-default .cm-number {color: #b5cea8;}
-        .cm-s-default .cm-def {color: #DCDCAA;}
-        .cm-s-default .cm-variable-2 {color: #9B859D;}
-        .cm-s-default .cm-variable-3 {color: #9B859D;}
-        .cm-s-default .cm-comment {color: #57A64A;}
-        .cm-s-default .cm-string {color: #d69d85;}
-        .cm-s-default .cm-string-2 {color: #d69d85;}
-        .cm-s-default .cm-meta {color: #9B859D;}
-        .cm-s-default .cm-qualifier {color: #9B859D;}
-        .cm-s-default .cm-builtin {color: #569CD6;}
-        .cm-s-default .cm-bracket {color: #dcdcdc;}
-        .cm-s-default .cm-tag {color: #569CD6;}
-        .cm-s-default .cm-attribute {color: #9B859D;}
-        .cm-s-default .cm-attribute-2 {color: #9B859D;}
-        .cm-s-default .cm-header {color: #dcdcdc;}
-        .cm-s-default .cm-quote {color: #dcdcdc;}
-        .cm-s-default .cm-link {color: #569CD6;}
-        .cm-s-default .cm-error {color: #f00;}
-        .cm-s-default .cm-invalidchar {color: #f00;}
-        .cm-s-default .CodeMirror-linenumber {color: #858585;}
-        .cm-s-default .CodeMirror-gutters {background-color: #2d2d2d;}
-        .cm-s-default .CodeMirror-cursor {border-left: 1px solid #dcdcdc;}
-        .cm-s-default .CodeMirror-selected {background-color: #515151;}
-        .download-button {
-            position: fixed;
-            @* top: 20px; *@
-            @* right: 20px; *@
-            z-index: 9999;
-        }
-     /* Custom styling to mimic Visual Studio appearance */
-        .CodeMirror {
-            margin-top: 5%;
-            @* height: 50%; *@
+            height: 50%;
             font-size: 14px;
             background-color: #1e1e1e; /* Dark background */
             color: #dcdcdc; /* Light text */
@@ -151,24 +83,17 @@
         .cm-s-default .CodeMirror-matchingtag {background: rgba(255, 150, 0, 0.3);}
         .cm-s-default .CodeMirror-activeline-gutter {background: #2d2d2d;}
         .cm-s-default .CodeMirror-foldmarker {color: #dcdcdc;}
-
-  </style>
+        
+    </style>
 </head>
 <body>
-  <div class="container">
-    
-    <div id="alertMessage" class="alert" role="alert" style="display: none;"></div>
-
-    <!-- List of Existing Entities -->
-    <h2 class="card-title">Project Code Review</h2>
+    <button class="download-button btn btn-primary" onclick="downloadFile()">Download</button>
 
     <div id="directoryTree"></div>
     <textarea id="codeEditor"></textarea>
 
-  </div>
-
-  <script>
-    // Function to fetch directory data using XHR
+    <script>
+        // Function to fetch directory data using XHR
         function fetchDirectory() {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', '/Directory/List', true);
@@ -233,6 +158,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             fetchDirectory();
         });
-  </script>
+    </script>
 </body>
 </html>
