@@ -72,4 +72,4 @@ jobs:
       env:
         SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       run: |
-        ssh raitrafiorenana_rambeloson@34.35.59.101 'echo "SSH connection successful" && sudo ./deploy-script.sh'
+        ssh raitrafiorenana_rambeloson@34.35.35.16 'echo "SSH connection successful" && sudo ./deploy-script.sh'
