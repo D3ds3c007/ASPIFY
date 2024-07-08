@@ -58,7 +58,7 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H 34.35.59.101 >> ~/.ssh/known_hosts
+        ssh-keyscan -H 34.35.35.16 >> ~/.ssh/known_hosts
 
     - name: Add SSH key to agent
       env:
