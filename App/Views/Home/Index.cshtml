@@ -28,6 +28,10 @@
     <meta name="msapplication-TileImage" content="~/img/favicons/mstile-150x150.png">
     <meta name="theme-color" content="#ffffff">
 
+    <meta name="title" content="ASPIFY - Free, No-Code Entity Creation for .NET Framework | aspify.tech">
+    <meta name="description" content="ASPIFY offers a free, intuitive web interface for creating entities and defining relationships in .NET projects. Simplify and speed up your development process without writing any code.">
+
+
 
     <!-- ===============================================-->
     <!--    Stylesheets-->
@@ -48,10 +52,10 @@
           <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mx-auto border-bottom border-lg-bottom-0 pt-2 pt-lg-0">
-              <li class="nav-item"><a class="nav-link active active" aria-current="page" href="#">About</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Learn</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Features </a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Account </a></li>
+              <li class="nav-item"><a class="nav-link active active" aria-current="page" href="#about">About</a></li>
+              <li class="nav-item"><a class="nav-link" href="#learn">Learn</a></li>
+              <li class="nav-item"><a class="nav-link" href="#features">Features </a></li>
+              <li class="nav-item"><a class="nav-link" href="https://github.com/d3ds3c007/ASPIFY">Visit repository </a></li>
             </ul>
             
           </div>
@@ -61,17 +65,52 @@
 
       <!-- ============================================-->
       <!-- <section> begin ============================-->
-      <section class="pb-6">
+      <section class="pb-6" id="about">
 
         <div class="container">
           <div class="row flex-center">
-            <div class="col-lg-6 col-md-5 order-md-1"><img class="img-fluid" src="~/img/illustrations/1.png" alt="" /></div>
+            <div class="col-lg-6 col-md-5 order-md-1"><img class="img-fluid" src="~/img/illustrations/1.png" alt="" width="538" height="336.69" /></div>
             <div class="col-md-7 col-lg-6 mt-5 text-center text-md-start">
-              <h1 class="fw-medium"><img class="d-inline-block align-middle" src="~/img/icons/logo.png" alt="" width="40" /> ASPIFY - Effortless <br />.NET Entity Creation <span class="fw-bold">Without Coding</span></h1>
+              <h1 class="fw-medium"><img class="d-inline-block align-middle" src="~/img/icons/logo.png" alt="" width="40" /> ASPIFY - Free <br />.NET Entity Creation <span class="fw-bold">Without Coding</span></h1>
               <p class="mt-3 mb-4">
                 <!-- <span class="fw-medium">Simplify Your Development Process with ASPIFY</span> -->
-                <br>Welcome to ASPIFY, the ultimate solution for creating entities and managing relationships in your .NET projects without writing a single line of code. Whether you're a seasoned developer or new to .NET, ASPIFY makes it easy and fast to generate template projects with just a few clicks.
+                <br>Welcome to ASPIFY, the ultimate solution for creating entities and managing relationships in your <a href="https://dotnet.microsoft.com/en-us/learn">.NET</a> projects without writing a single line of code. Whether you're a seasoned developer or new to <a href="https://dotnet.microsoft.com/en-us/learn">.NET</a>, ASPIFY makes it easy and fast to generate template projects with just a few clicks.
               </p><a class="btn btn-lg btn-danger hover-top btn-glow" asp-controller="Generator" asp-action="Entities">Get Started </a>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+
+
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <section class="py-4">
+
+        <div class="container">
+          <div class="card py-5 border-0 shadow-sm">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4">
+                  <div class="border-end d-flex justify-content-md-center">
+                    <h1 class="fw-medium"><img class="d-inline-block align-middle" src="~/img/icons/logo.png" alt="" width="40" /> ASPIFY </h1>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <p class="mt-3 mb-4">
+                    Best of all, ASPIFY is <span class="fw-bold">Completely Free</span> and <span class="fw-bold">Open Source</span>. <br> The source code can be downloaded from our <a href="https://github.com/d3ds3c007/ASPIFY" target="_blank">GitHub repository. <svg height="32" viewBox="0 0 16 16" version="1.1" width="25" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.13 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.93.08 2.13.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                    </svg>
+                    </a>
+                  </p>
+                  </div>
+                </div>
+                
+              </div>
             </div>
           </div>
         </div>
@@ -88,7 +127,7 @@
 
       <!-- ============================================-->
       <!-- <section> begin ============================-->
-      <section class="pt-4 pt-md-6">
+      <section class="pt-4 pt-md-6" id="learn">
         <div class="row justify-content-center">
           <div class="col-md-8 col-lg-5 text-center mb-3">
             <h2>How It Works</h2>
@@ -159,7 +198,7 @@
                 </svg>
                 Generate Project
               </h2>
-              <p> Click to generate a fully functional .NET template project.</p>
+              <p> Click to generate a fully functional <a href="https://dotnet.microsoft.com/en-us/learn">.NET</a> template project.</p>
               </p><a class="btn btn-lg btn-danger hover-top btn-glow" asp-controller="Generator" asp-action="Entities">Get Started </a>
               
             </div>
@@ -215,7 +254,7 @@
 
       <!-- ============================================-->
       <!-- <section> begin ============================-->
-      <section class="bg-100 py-7">
+      <section class="bg-100 py-7" id="features">
 
         <div class="container-lg">
           <div class="row justify-content-center">
@@ -302,7 +341,7 @@
                     </svg>
                     
                     <h5 class="my-4">.NET Framework Compatible</h5>
-                    <p> Seamlessly integrate with your existing .NET projects.
+                    <p> Seamlessly integrate with your existing <a href="https://dotnet.microsoft.com/en-us/learn">.NET</a> projects.
                     </p>
 
                   </div>
@@ -330,7 +369,7 @@
 
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-md-5 col-lg-7 text-lg-center"><img class="img-fluid mb-5 mb-md-0" src="~/img/illustrations/2.png" alt="" /></div>
+              <div class="col-md-5 col-lg-7 text-lg-center"><img class="img-fluid mb-5 mb-md-0" src="~/img/illustrations/2.png" alt="" width="510" height="416"/></div>
               <div class="col-md-7 col-lg-5 text-center text-md-start">
                 <h2>We Provide Many <br />Features You Can Use</h2>
                 <p> You can explore the features that we provide with fun and have their own functions each feature.</p>
@@ -386,7 +425,7 @@
               <div class="row flex-center">
                 <div class="col-12 col-lg-6 text-lg-start">
                   <h2>Start Your Project with ASPIFY Today</h2>
-                  <p class="mb-lg-0">Ready to streamline your development process? Get started with ASPIFY and experience the ease of creating .NET entities and relationships without coding.
+                  <p class="mb-lg-0">Ready to streamline your development process? Get started with ASPIFY and experience the ease of creating <a href="https://dotnet.microsoft.com/en-us/learn">.NET</a> entities and relationships without coding.
                   </p>
                 </div>
                 <div class="col-12 col-lg-6 text-lg-end"><a class="btn btn-lg btn-danger hover-top btn-glow text-end"  asp-controller="Generator" asp-action="Entities">Get Started</a></div>
@@ -410,7 +449,7 @@
         <div class="container">
           <div class="row">
             <div class="col-12 col-lg-4 mb-3"><a href="#"><img class="d-inline-block align-middle" src="~/img/icons/logo.png" alt="" width="30" /><span class="d-inline-block text-1000 fs-1 ms-2 fw-medium lh-base"><span class="fw-bold">ASPIFY</span></span></a>
-              <p class="my-3"> <span class="fw-medium">Simplifying .NET Development for C# developers</p>
+              <p class="my-3"> <span class="fw-medium">Simplifying <a href="https://dotnet.microsoft.com/en-us/learn">.NET</a> Development for C# developers</p>
               <ul class="list-unstyled list-inline">
                 <li class="list-inline-item"><a class="text-decoration-none" href="#!">
                     <svg class="bi bi-facebook" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F53838" viewBox="0 0 16 16">
@@ -433,7 +472,7 @@
             <div class="col-6 col-sm-4 col-lg-3 mb-3">
               <h5 class="lh-lg">Learn More</h5>
               <ul class="list-unstyled mb-md-4 mb-lg-0">
-                <li class="lh-lg"><a class="text-900 text-decoration-none" href="https://docs.microsoft.com/en-us/aspnet/core/mvc">ASP.NET Core MVC documentation</a></li>
+                <li class="lh-lg"><a class="text-900 text-decoration-none" href="https://docs.microsoft.com/en-us/aspnet/core/mvc">ASP<a href="https://dotnet.microsoft.com/en-us/learn">.NET</a> Core MVC</a></li>
                 <li class="lh-lg"><a class="text-900 text-decoration-none" href="#!">Entity Creation Guide</a></li>
                 <li class="lh-lg"><a class="text-900 text-decoration-none" href="#!">Tutorial</a></li>
                 <li class="lh-lg"><a class="text-900 text-decoration-none" href="#!">Template Project</a></li>
@@ -448,7 +487,7 @@
             </div>
             <hr class="opacity-25" />
             <div class="text-400 text-center">
-              <p>&copy; 2024 ASPIFY | All rights reserved | By Dedsec & company</p>
+              <p>&copy; 2024 <a href="https://aspify.tech">aspify.tech</a> | All rights reserved | By Dedsec & company</p>
 
             </div>
           </div>
@@ -466,7 +505,21 @@
     <!-- ===============================================-->
 
 
+    <script>
+          document.querySelectorAll('.navbar a').forEach(anchor => {
+              anchor.addEventListener('click', function(e) {
+                  @* e.preventDefault(); *@
 
+                  const targetId = this.getAttribute('href').substring(1);
+                  const targetSection = document.getElementById(targetId);
+
+                  window.scrollTo({
+                      top: targetSection.offsetTop - document.querySelector('.navbar').offsetHeight,
+                      behavior: 'smooth'
+                  });
+              });
+          });
+      </script>
 
     <!-- ===============================================-->
     <!--    JavaScripts-->
