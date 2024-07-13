@@ -9,9 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Entities Section</title>
   <!-- Bootstrap CSS link -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link href="~/css/theme.css" rel="stylesheet" />
-
+  <link rel="stylesheet" href="~/bootstrap.min.css">
   <style>
     /* Red theme */
     body {
@@ -91,6 +89,7 @@
             <input type="text" class="form-control" id="entityName" name="entityName" placeholder="Enter entity name">
           </div>
 
+          <hr>
 
           <h3>Properties</h3>
           <div class="property-box">
@@ -122,15 +121,9 @@
             </div>
           </div>
 
-          <div class="form-group card-body d-flex justify-content-between align-items-center">
-              @* <a class="btn btn-lg btn-info hover-top btn-glow" onclick="addProperty()">Add Property</a> *@
-
-            <button type="button" class="btn btn-info mr-2" onclick="addProperty()">Add Property</button>
-            @* <button type="button" class="btn btn-success" onclick="addEntity()">Add Entity</button> *@
-          </div>
-          <div class="form-group card-body d-flex justify-content-between align-items-center">
-              <a href=""></a>
-              <a class="btn btn-lg btn-danger hover-top btn-glow" onclick="addEntity()">Save Entity</a>
+          <div class="form-group">
+            <button type="button" class="btn btn-primary mr-2" onclick="addProperty()">Add Property</button>
+            <button type="button" class="btn btn-success" onclick="addEntity()">Add Entity</button>
           </div>
         </form>
       </div>
