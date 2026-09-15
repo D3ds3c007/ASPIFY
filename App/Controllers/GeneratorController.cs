@@ -47,6 +47,49 @@ namespace ASPIFY_MVC.Controllers
             return View();
         }
 
+        [HttpGet("er-diagram")]
+        [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
+        public IActionResult ERDiagram()
+        {
+            string filename = GetSafeXmlPath();
+            try{
+                if(System.IO.File.Exists(filename))
+                {
+                    EntityCollection entityCollection = XMLService.Deserialize(filename);
+                    ViewBag.Entities = entityCollection.Entities;
+                    
+                    // Collect all relationships from all entities
+                    var allRelationships = new List<Relationship>();
+                    foreach(var entity in entityCollection.Entities)
+                    {
+                        if(entity.Relationships != null)
+                        {
+                            foreach(var rel in entity.Relationships)
+                            {
+                                // Avoid duplicates by checking if relationship name already exists
+                                if(!allRelationships.Any(r => r.relationName == rel.relationName))
+                                {
+                                    allRelationships.Add(rel);
+                                }
+                            }
+                        }
+                    }
+                    ViewBag.Relationships = allRelationships;
+                }
+                else
+                {
+                    ViewBag.Entities = new List<Entity>();
+                    ViewBag.Relationships = new List<Relationship>();
+                }
+            }catch(Exception ex)
+            {
+                _logger.LogError(ex, "Failed to load data for ER diagram");
+                ViewBag.Entities = new List<Entity>();
+                ViewBag.Relationships = new List<Relationship>();
+            }
+            return View();
+        }
+
         [HttpGet("entities/{name}")]
         [ResponseCache(NoStore = true, Location = ResponseCacheLocation.None)]
         public IActionResult Entity(string name)
