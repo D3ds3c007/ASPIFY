@@ -10,9 +10,16 @@ public class RelationshipService
         EntityCollection entityCollection = XMLService.Deserialize(filename);
         Entity? sourceEntity = entityCollection.Entities.Find(e => e.Name == sourceEntityName);
         Entity? targetEntity = entityCollection.Entities.Find(e => e.Name == targetEntityName);
+        
+        if (sourceEntity == null || targetEntity == null)
+        {
+            throw new ArgumentException($"Source or target entity not found. Source: {sourceEntityName}, Target: {targetEntityName}");
+        }
+
+        // Filter to only include source and target entities
         EntityCollection specificEntities = new EntityCollection
         {
-            Entities = entityCollection.Entities.Where(e => e.Name.Contains(e.Name)).ToList()
+            Entities = entityCollection.Entities.Where(e => e.Name == sourceEntityName || e.Name == targetEntityName).ToList()
         };
         Relationship relationship = new Relationship();
 
@@ -20,7 +27,7 @@ public class RelationshipService
         {
             var existingEntity = specificEntities.Entities.FirstOrDefault(e => e.Name == entity.Name);
             Console.WriteLine("Found Entity : " + entity.Name );
-            if(existingEntity != null && existingEntity.Name == sourceEntityName || existingEntity.Name == targetEntityName)
+            if(existingEntity != null && (existingEntity.Name == sourceEntityName || existingEntity.Name == targetEntityName))
             {
                 if(existingEntity.Name == sourceEntityName)
                 {
@@ -31,11 +38,9 @@ public class RelationshipService
                     existingEntity.Relationships.Add(relationship);
                 }else{
                     relationship = new Relationship();
-                    if(relationType == "OneToMany")
-                        relationType = "ManyToOne";
                     Console.WriteLine("Target Entity Found"+ targetEntityName + sourceEntityName);
                     relationship.targetEntity = sourceEntityName;
-                    relationship.type = relationType;
+                    relationship.type = GetReverseRelationType(relationType);
                     relationship.relationName = sourceEntityName + targetEntityName;
                     existingEntity.Relationships.Add(relationship);
                 }   
@@ -45,8 +50,19 @@ public class RelationshipService
         XmlSerializer serializer = new XmlSerializer((typeof(EntityCollection)));
         using (FileStream fs = new FileStream(filename, FileMode.Create))
         {
-            serializer.Serialize(fs, specificEntities);
+            serializer.Serialize(fs, entityCollection);
         }
+    }
+
+    private static string GetReverseRelationType(string relationType)
+    {
+        return relationType switch
+        {
+            "OneToMany" => "ManyToOne",
+            "ManyToOne" => "OneToMany",
+            "OneToOne" => "OneToOne",
+            _ => relationType
+        };
     }
 
     public static List<Relationship> getAllExistingRelationships(string filename)

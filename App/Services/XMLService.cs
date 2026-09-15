@@ -31,15 +31,9 @@ public class XMLService
 
                     EntityCollection entityCollection = (EntityCollection) obj;
                     if (entityCollection.Entities.Count == 0) throw new InvalidOperationException("No entities to serialize");
-                    Entity e = entityCollection.Entities[0];
-                    serializer = new XmlSerializer(e.GetType());
-                    var xmlSettings = new XmlWriterSettings
-                    {
-                        OmitXmlDeclaration = true,
-                        Indent = true,
-                        CheckCharacters = true
-                    };
-                    serializer.Serialize(writer, e, namespaces);
+                    
+                    // Always serialize the full collection to maintain consistency
+                    serializer.Serialize(writer, obj, namespaces);
                     xml = writer.ToString();
                     xml = xml.Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", "");
                     if (xml.Length > 0 && xml[0] == '\n') xml = xml.Substring(1);
