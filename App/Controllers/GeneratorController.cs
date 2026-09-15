@@ -39,9 +39,14 @@ namespace ASPIFY_MVC.Controllers
                     EntityCollection entityCollection = XMLService.Deserialize(filename);
                     ViewBag.Entities = entityCollection.Entities;
                 }
+                else
+                {
+                    ViewBag.Entities = new List<Entity>();
+                }
             }catch(Exception ex)
             {
                 _logger.LogError(ex, "Failed to load entities");
+                ViewBag.Entities = new List<Entity>();
                 return BadRequest("Unable to load entities"); // V-13 generic
             }
             return View();

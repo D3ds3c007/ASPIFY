@@ -67,10 +67,27 @@ public class RelationshipService
 
     public static List<Relationship> getAllExistingRelationships(string filename)
     {
-        EntityCollection entityCollection = XMLService.Deserialize(filename);
+        EntityCollection entityCollection;
+        if (!System.IO.File.Exists(filename))
+            return new List<Relationship>();
+        
+        try
+        {
+            entityCollection = XMLService.Deserialize(filename);
+        }
+        catch
+        {
+            return new List<Relationship>();
+        }
+
+        if (entityCollection.Entities == null)
+            return new List<Relationship>();
+
         List<Relationship> relationships = new List<Relationship>();
         foreach(var entity in entityCollection.Entities)
         {
+            if (entity.Relationships == null)
+                continue;
             foreach(var relationship in entity.Relationships)
             {
                     if(relationship.relationName != null)

@@ -25,7 +25,9 @@ namespace ASPIFY_MVC.Controllers
             try
             {
                 string xmlPath = GetSafeXmlPath();
-                EntityCollection entityCollection = XMLService.Deserialize(xmlPath);
+                EntityCollection entityCollection = System.IO.File.Exists(xmlPath) ? XMLService.Deserialize(xmlPath) : new EntityCollection();
+                if (entityCollection.Entities == null)
+                    entityCollection.Entities = new List<Entity>();
                 List<Relationship> relationships = RelationshipService.getAllExistingRelationships(xmlPath);
                 ViewBag.Entities = entityCollection.Entities;
                 ViewBag.Relationships = relationships;
