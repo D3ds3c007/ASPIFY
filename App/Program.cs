@@ -14,7 +14,7 @@ builder.Services.AddControllersWithViews(options =>
 builder.Services.AddAntiforgery(options =>
 {
     options.HeaderName = "X-XSRF-TOKEN";
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
     options.Cookie.SameSite = SameSiteMode.Strict;
 });
 
@@ -50,7 +50,7 @@ builder.Services.AddRateLimiter(options =>
 //         options.SlidingExpiration = true;
 //         options.Cookie.HttpOnly = true;
 //         options.Cookie.SameSite = SameSiteMode.Strict;
-//         options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+//         options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
 //     });
 // builder.Services.AddAuthorization(options => {
 //     options.FallbackPolicy = new AuthorizationPolicyBuilder()

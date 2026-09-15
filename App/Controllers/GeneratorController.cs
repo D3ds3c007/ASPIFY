@@ -179,7 +179,7 @@ namespace ASPIFY_MVC.Controllers
             // Note: in fixed version this reads from canonical path, not relative "entity.xml"
             string xmlPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "entity.xml"));
             // This is static method - cannot inject logger/env here, but add guards
-            if (!File.Exists(xmlPath))
+            if (!System.IO.File.Exists(xmlPath))
                 return;
 
             EntityCollection entityCollection;

@@ -130,7 +130,7 @@ public class XMLService
     {
         // Resolve full path and check size
         fileName = Path.GetFullPath(fileName);
-        if (!File.Exists(fileName))
+        if (!System.IO.File.Exists(fileName))
             return new EntityCollection(); // return empty rather than throw
 
         var fi = new FileInfo(fileName);
@@ -143,7 +143,6 @@ public class XMLService
             XmlResolver = null,
             MaxCharactersFromEntities = 1024,
             MaxCharactersInDocument = 2_000_000,
-            MaxArrayLength = 1024 * 102
         };
 
         var serializer = new XmlSerializer(typeof(EntityCollection));

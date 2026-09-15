@@ -17,7 +17,7 @@ public static class ValidationService
     };
 
     // Map informal type names to canonical C# types
-    private static readonly Dictionary<string, string> TypeMap = new(StringComparer.OrdinalIgnoreCase)
+    private static readonly Dictionary<string, string> TypeMap = new(StringComparer.Ordinal)
     {
         {"String", "String"}, {"string", "string"},
         {"int", "int"}, {"Integer", "int"},

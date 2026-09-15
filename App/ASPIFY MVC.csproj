@@ -15,7 +15,7 @@
     <!-- If you need rewriting, use the framework-provided Microsoft.AspNetCore.Rewrite (no package ref needed) -->
     <PackageReference Include="System.CodeDom" Version="9.0.0" />
     <!-- Added security & rate limiting packages -->
-    <PackageReference Include="Microsoft.AspNetCore.RateLimiting" Version="8.0.0" />
+    <!-- RateLimiting is part of Microsoft.AspNetCore.App shared framework in net8.0, no separate package needed -->
   </ItemGroup>
 
   <ItemGroup>
