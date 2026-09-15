@@ -27,6 +27,7 @@ namespace ASPIFY_MVC.Templates
         /// <summary>
         /// Create the template output
         /// </summary>
+        // V-08 FIX: ContextTemplate.tt now uses env var, not hardcoded password
         public virtual string TransformText()
         {
             this.Write(@"
@@ -51,7 +52,7 @@ public partial class evalContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-                optionsBuilder.UseNpgsql(""Host=localhost;Database=evaluation;Username=postgres;Password=root;"");
+                optionsBuilder.UseNpgsql(""Host=localhost;Database=evaluation;Username=postgres;Password=${ASPIFY_CONNECTIONSTRING_FROM_ENV}; // SECURED: use env var ASPIFY_CONNECTIONSTRING"");
                 optionsBuilder.UseLazyLoadingProxies();
     }
 

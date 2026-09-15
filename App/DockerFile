@@ -2,16 +2,26 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /App
 EXPOSE 80
 
-
-# Copy everything
-COPY . ./
-# Restore as distinct layers
+# Copy csproj and restore as distinct layers (better cache)
+COPY *.csproj ./
 RUN dotnet restore
-# Build and publish a release
-RUN dotnet publish -c Release -o out
+
+# Copy everything else and build
+COPY . ./
+# V-08 FIX: Don't bake secrets into image - ensure no hardcoded password in published output
+RUN dotnet publish -c Release -o out --no-restore
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /App
+# Security hardening: run as non-root
+RUN adduser --disabled-password --gecos '' appuser && chown -R appuser /App
+USER appuser
+
 COPY --from=build-env /App/out .
+
+# V-08 & V-11: Environment variable must be provided at runtime
+ENV ASPNETCORE_ENVIRONMENT=Production
+# ASPIFY_CONNECTIONSTRING must be injected at runtime: docker run -e ASPIFY_CONNECTIONSTRING="Host=...;Password=..."
+
 ENTRYPOINT ["dotnet", "ASPIFY MVC.dll"]

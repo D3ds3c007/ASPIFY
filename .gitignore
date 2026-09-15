@@ -1,0 +1,19 @@
+# V-08 & V-11 FIX: ignore generated secrets and user files
+App/appsettings.Production.json
+App/appsettings.local.json
+App/entity.xml
+App/wwwroot/download/models/*.cs
+App/wwwroot/download/Data/evalcontext.cs
+
+# Don't push local secrets
+.env
+*.pfx
+*.key
+
+# MSBuild
+bin/
+obj/
+out/
+
+# User secrets
+secrets.json

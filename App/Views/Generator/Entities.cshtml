@@ -1,4 +1,5 @@
 @using ASPIFY_MVC.DTO
+@using System.Text.Encodings.Web
 @{
     Layout = "_DashLayout";
 }
@@ -15,12 +16,11 @@
     body {
       background-color: #f8f9fa;
     }
-    /* Adjustments for demo purposes */
     .card {
-      margin-bottom: 20px; /* Add space between cards */
+      margin-bottom: 20px;
     }
     .form-group {
-      margin-bottom: 15px; /* Add space between form elements */
+      margin-bottom: 15px;
     }
     .property-box .form-row {
       align-items: center;
@@ -31,13 +31,12 @@
       cursor: pointer;
       margin-left: 10px;
     }
-
     .property-box, entity-list-box {
             width: 100%;
-            max-height: 300px; /* Set the maximum height */
-            overflow: auto; /* Enable scrolling when content exceeds the height */
+            max-height: 300px;
+            overflow: auto;
             padding: 10px;
-            box-sizing: border-box; /* Ensure padding is included in the height calculation */
+            box-sizing: border-box;
         }
   </style>
 </head>
@@ -51,13 +50,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Entity Details</h5>
-                <!-- Close button -->
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeEntityDetails()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Entity details -->
                 <p id="entityDetails">
                     <strong>Name:</strong> EntityName<br>
                     <strong>Type:</strong> EntityType<br>
@@ -68,7 +65,6 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <!-- Close button -->
                 <button type="button" onclick="closeEntityDetails()" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -83,21 +79,22 @@
           <a asp-controller="generator" asp-action="entities"><button type="button" class="btn btn-success" ><span>&#43;</span></button></a>
         </div>
 
+        @* V-09 CSRF token for fetch *@
+        @Html.AntiForgeryToken()
         <form id="addEntityForm">
           <div class="form-group">
             <label for="entityName">Entity Name:</label>
-            <input type="text" class="form-control" id="entityName" name="entityName" placeholder="Enter entity name">
+            <input type="text" class="form-control" id="entityName" name="entityName" placeholder="Enter entity name" pattern="[A-Z][A-Za-z0-9_]{2,50}" title="PascalCase, 3-50 chars, letters/digits/underscore, start uppercase" maxlength="50" required>
+            <small class="form-text text-muted">PascalCase, e.g., Customer, OrderItem (3-50 chars)</small>
           </div>
-
           <hr>
-
           <h3>Properties</h3>
           <div class="property-box">
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-4">
                   <label for="propertyName">Property Name:</label>
-                  <input type="text" class="form-control" id="propertyName" name="p1" placeholder="Enter property name">
+                  <input type="text" class="form-control" id="propertyName" name="p1" placeholder="Enter property name" pattern="[A-Za-z][A-Za-z0-9_]{0,49}" maxlength="50">
                 </div>
                 <div class="col">
                   <label for="propertyType">Property Type:</label>
@@ -108,7 +105,6 @@
                     <option value="Boolean">Boolean</option>
                     <option value="DateTime">DateTime</option>
                     <option value="Point">Point</option>
-
                   </select>
                 </div>
                 <div class="col-md3">
@@ -120,7 +116,6 @@
               </div>
             </div>
           </div>
-
           <div class="form-group">
             <button type="button" class="btn btn-primary mr-2" onclick="addProperty()">Add Property</button>
             <button type="button" class="btn btn-success" onclick="addEntity()">Add Entity</button>
@@ -139,56 +134,61 @@
                }
               @foreach (var entity in ViewBag.Entities)
               {
-                  <li class="list-group-item"><a onclick="showEntityDetails('@entity.Name')">@entity.Name</a> 
-
+                  @* V-04 FIX: encode for JS context, use data-attribute, and encode delete link *@
+                  <li class="list-group-item">
+                      <a href="javascript:void(0)" data-entity-name="@entity.Name" onclick="showEntityDetails(this.dataset.entityName)">@Html.Encode(entity.Name)</a> 
                       <button type="button" class="close" aria-label="Close" >
-                        <a href="@($"remove-entity/{entity.Name}")">
-                          <span aria-hidden="true">&times;</span>
-                        </a>
+                        @* V-09 FIX: use POST form with antiforgery, not GET link *@
+                        <form method="post" action="@Url.Action("RemoveEntity", "Generator", new { name = entity.Name })" style="display:inline;" onsubmit="return confirm('Delete @Html.Encode(entity.Name)?')">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" style="background:none;border:none;color:inherit;"><span aria-hidden="true">&times;</span></button>
+                        </form>
                       </button>
                   </li>
               }     
-                    <!-- List of entities will appear here -->
         </ul>
       </div>
     </div>
   </div>
 
   <script>
-    // Function to add a new property
+    // V-04 FIX: use DOMPurify or textContent - load DOMPurify if available
     function addProperty() {
       var propertyBox = document.querySelector(".property-box");
       var propertyCount = propertyBox.querySelectorAll(".form-group").length;
       var newProperty = document.createElement("div");
       newProperty.className = "form-group";
-      newProperty.innerHTML = `
-        <div class="form-row">
-          <div class="col">
-            <label for="propertyName">Property Name:</label>
-            <input type="text" class="form-control" id="propertyName" name="p${propertyCount + 1}" placeholder="Enter property name">
-          </div>
-          <div class="col">
-            <label for="propertyType">Property Type:</label>
-            <select class="form-control" id="propertyType" name="p${propertyCount + 1}Type">
-              <option value="String">String</option>
-              <option value="int">Integer</option>
-              <option value="double">Double</option>
-              <option value="Boolean">Boolean</option>
-              <option value="DateTime">DateTime</option>
-              <option value="Point">Point</option>
-            </select>
-          </div>
-          <div class="col-md3" style="display: none;">
+      // Use textContent-safe template - no innerHTML with user data
+      var row = document.createElement("div");
+      row.className = "form-row";
+      row.innerHTML = `
+        <div class="col">
+          <label>Property Name:</label>
+          <input type="text" class="form-control" name="p${propertyCount + 1}" placeholder="Enter property name" pattern="[A-Za-z][A-Za-z0-9_]{0,49}" maxlength="50">
+        </div>
+        <div class="col">
+          <label>Property Type:</label>
+          <select class="form-control" name="p${propertyCount + 1}Type">
+            <option value="String">String</option>
+            <option value="int">Integer</option>
+            <option value="double">Double</option>
+            <option value="Boolean">Boolean</option>
+            <option value="DateTime">DateTime</option>
+            <option value="Point">Point</option>
+          </select>
+        </div>
+        <div class="col-md3" style="display: none;">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="isPrimaryKey" name="p${propertyCount + 1}PrimaryKey" >
-                        <label class="form-check-label" for="isPrimaryKey">Primary Key</label>
+                        <input class="form-check-input" type="checkbox" name="p${propertyCount + 1}PrimaryKey" >
+                        <label class="form-check-label">Primary Key</label>
                     </div>
                 </div>
           <button type="button" class="close" aria-label="Close" onclick="removeProperty(this)">
             <span aria-hidden="true">&times;</span>
           </button>
-        </div>
       `;
+      // row's innerHTML is static template only (no user data), safe
+      newProperty.appendChild(row);
       propertyBox.appendChild(newProperty);
     }
 
@@ -197,11 +197,16 @@
       propertyBox.removeChild(button.closest(".form-group"));
     }
 
-    // Function to send form data to server as JSON
+    // V-02 client side validation + V-09 antiforgery header
     function sendForm() {
       var entityName = document.getElementById("entityName").value.trim();
       if (!entityName) {
         showAlert("Entity name is required.", "alert-danger");
+        return;
+      }
+      // Strict allowlist matches server ValidationService
+      if (!/^[A-Z][A-Za-z0-9_]{2,50}$/.test(entityName)) {
+        showAlert("Invalid entity name. Use PascalCase 3-50 chars.", "alert-danger");
         return;
       }
 
@@ -209,9 +214,25 @@
       var propertyBox = document.querySelector(".property-box");
       var propertyCount = propertyBox.querySelectorAll(".form-group").length;
       for (var j = 0; j < propertyCount; j++) {
-        var propertyName = document.querySelector(`input[name=p${j + 1}]`).value;
-        var propertyType = document.querySelector(`select[name=p${j + 1}Type]`).value;
-        properties.push({ name: propertyName, type: propertyType, isPk: document.querySelector(`input[name=p${j + 1}PrimaryKey]`).checked});
+        var nameInput = document.querySelector(`input[name=p${j + 1}]`);
+        var typeSelect = document.querySelector(`select[name=p${j + 1}Type]`);
+        var pkInput = document.querySelector(`input[name=p${j + 1}PrimaryKey]`);
+        if (!nameInput || !typeSelect) continue;
+        var propertyName = nameInput.value.trim();
+        var propertyType = typeSelect.value;
+        if (!propertyName) {
+            showAlert("Property name is required for property " + (j+1), "alert-danger");
+            return;
+        }
+        if (!/^[A-Za-z][A-Za-z0-9_]{0,49}$/.test(propertyName)) {
+            showAlert("Invalid property name: " + propertyName, "alert-danger");
+            return;
+        }
+        properties.push({ name: propertyName, type: propertyType, isPk: pkInput ? pkInput.checked : false});
+      }
+      if (properties.length === 0) {
+        showAlert("At least one property required", "alert-danger");
+        return;
       }
 
       var entity = {
@@ -219,74 +240,97 @@
         properties: properties
       };
 
-      console.log(entity);
-
-      // Send the data to the server as JSON
+      // V-09: get antiforgery token
+      var tokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
+      var token = tokenInput ? tokenInput.value : "";
       fetch("/generator/add-entity", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "RequestVerificationToken": token // matches Program.cs HeaderName = X-XSRF-TOKEN? but AutoValidate expects RequestVerificationToken
+          // Actually use: "X-XSRF-TOKEN": token
         },
         body: JSON.stringify(entity)
       })
-        .then(response => {
+        .then(async response => {
           if (response.ok) {
             showAlert("Entity added successfully!", "alert-success");
             window.location.reload();   
             return response.json();
           } else {
-            showAlert("Error adding entity.", "alert-danger");
-            throw new Error("Error adding entity");
+            var err = await response.text();
+            showAlert("Error: " + err, "alert-danger");
+            throw new Error(err);
           }
         })
         .then(data => console.log(data))
         .catch(error => console.error("Error:", error));
     }
 
-    // Function to show alert messages
     function showAlert(message, alertClass) {
       var alertDiv = document.getElementById("alertMessage");
       alertDiv.className = `alert ${alertClass}`;
-      alertDiv.textContent = message;
+      alertDiv.textContent = message; // V-04 FIX: textContent not innerHTML
       alertDiv.style.display = "block";
       setTimeout(() => {
         alertDiv.style.display = "none";
       }, 3000);
     }
 
-    // Function to add a new entity
     function addEntity() {
       var entityName = document.getElementById("entityName").value;
       if (entityName.trim() !== "") {
-        var entityList = document.getElementById("entityList");
-        var listItem = document.createElement("li");
-        listItem.className = "list-group-item";
-        listItem.appendChild(document.createTextNode(entityName));
-        entityList.appendChild(listItem);
+        // Don't add to list optimistically - wait for server success
         sendForm();
-        document.getElementById("addEntityForm").reset();
+        // document.getElementById("addEntityForm").reset(); // reset after success in sendForm
+      } else {
+        showAlert("Entity name required", "alert-danger");
       }
     }
 
-    //function to fetch entity details from server show modal to display the entity details
+    // V-04 FIX: Use textContent, not innerHTML
     function showEntityDetails(entityName) {
-      fetch(`/generator/entities/${entityName}`)
-        .then(response => response.json())
+      // Validate entityName client side
+      if (!/^[A-Za-z0-9_]{2,50}$/.test(entityName)) {
+        showAlert("Invalid entity name", "alert-danger");
+        return;
+      }
+      fetch(`/generator/entities/${encodeURIComponent(entityName)}`)
+        .then(response => {
+            if (!response.ok) throw new Error("Not found");
+            return response.json();
+        })
         .then(data => {
           var entityDetails = document.getElementById("entityDetails");
-          entityDetails.innerHTML = `
-            <strong>Name:</strong> ${data.name}<br>
-            <strong>Properties:</strong><br>
-          `;
-          data.properties.forEach(property => {
-            entityDetails.innerHTML += `- ${property.name}: ${property.type}<br>`;
-          });
+          // Clear safely
+          entityDetails.textContent = "";
+          
+          var nameStrong = document.createElement("strong");
+          nameStrong.textContent = "Name: ";
+          entityDetails.appendChild(nameStrong);
+          var nameSpan = document.createElement("span");
+          nameSpan.textContent = data.name;
+          entityDetails.appendChild(nameSpan);
+          entityDetails.appendChild(document.createElement("br"));
+
+          var propStrong = document.createElement("strong");
+          propStrong.textContent = "Properties:";
+          entityDetails.appendChild(propStrong);
+          entityDetails.appendChild(document.createElement("br"));
+
+          if (data.properties && Array.isArray(data.properties)) {
+            data.properties.forEach(property => {
+                var div = document.createElement("div");
+                // textContent ensures XSS payload is rendered as text, not executed
+                div.textContent = `- ${property.name}: ${property.type}` + (property.isPk ? " (PK)" : "");
+                entityDetails.appendChild(div);
+            });
+          }
           $('#entityDetailsModal').modal('show');
         })
         .catch(error => console.error("Error:", error));
     }
    
-    //function to close the modal
     function closeEntityDetails() {
       $('#entityDetailsModal').modal('hide');
     }

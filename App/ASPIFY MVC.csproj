@@ -5,11 +5,17 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>ASPIFY_MVC</RootNamespace>
+    <!-- Security: treat warnings as errors for analyzers -->
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Rewrite" Version="2.2.0" />
-    <PackageReference Include="System.CodeDom" Version="8.0.0" />
+    <!-- V-14 FIX: Removed deprecated Microsoft.AspNetCore.Rewrite 2.2.0 (included in net8.0 framework) -->
+    <!-- If you need rewriting, use the framework-provided Microsoft.AspNetCore.Rewrite (no package ref needed) -->
+    <PackageReference Include="System.CodeDom" Version="9.0.0" />
+    <!-- Added security & rate limiting packages -->
+    <PackageReference Include="Microsoft.AspNetCore.RateLimiting" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -8,29 +8,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Entity Relationship</title>
-    <!-- Bootstrap CSS link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .card {
-            margin-bottom: 20px; 
-        }
-        .form-group {
-            margin-bottom: 15px; 
-        }
+        body { background-color: #f8f9fa; }
+        .card { margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
     </style>
 </head>
 <body>
     <div class="container">
         <div id="alertMessage" class="alert" role="alert" style="display: none;"></div>
 
-        <!-- Create Relationship Form -->
         <div class="card">
             <div class="card-body">
                 <h2 class="card-title">Create Entity Relationship</h2>
-
+                @Html.AntiForgeryToken()
                 <form id="createRelationshipForm">
                     <div class="form-group">
                         <label for="sourceEntity">Source Entity:</label>
@@ -38,10 +30,9 @@
                             @{
                                 foreach(Entity entity in ViewBag.Entities)
                                 {
-                                    <option value="@entity.Name">@entity.Name</option>
+                                    <option value="@Html.Encode(entity.Name)">@Html.Encode(entity.Name)</option>
                                 }
                             }
-                            <!-- Add options dynamically from your backend data -->
                         </select>
                     </div>
                     <div class="form-group">
@@ -50,10 +41,9 @@
                              @{
                                 foreach(Entity entity in ViewBag.Entities)
                                 {
-                                    <option value="@entity.Name">@entity.Name</option>
+                                    <option value="@Html.Encode(entity.Name)">@Html.Encode(entity.Name)</option>
                                 }
                             }
-                            <!-- Add options dynamically from your backend data -->
                         </select>
                     </div>
                     <div class="form-group">
@@ -61,6 +51,7 @@
                         <select class="form-control" id="relationshipType" name="relationshipType">
                             <option value="OneToOne">One-to-One</option>
                             <option value="OneToMany">One-to-Many</option>
+                            <option value="ManyToOne">Many-to-One</option>
                             <option value="ManyToMany">Many-to-Many</option>
                         </select>
                     </div>
@@ -71,19 +62,21 @@
             </div>
         </div>
 
-        <!-- List of Existing Relationships -->
         <div class="card">
             <div class="card-body">
                 <h2 class="card-title">Existing Relationships</h2>
                 <ul id="relationshipList" class="list-group">
-                    <!-- List of relationships will appear here -->
                     @foreach(Relationship relationship in ViewBag.Relationships)
                     {
-                        <li class="list-group-item"><a href="">@($"{relationship.relationName} ({relationship.type})")</a> 
+                        <li class="list-group-item">
+                            @* V-04 FIX: encode output *@
+                            <a href="">@Html.Encode($"{relationship.relationName} ({relationship.type})")</a> 
                             <button type="button" class="close" aria-label="Close" >
-                                <a href="@($"/relationship/remove-relationship/{relationship.relationName}")">
-                                <span aria-hidden="true">&times;</span>
-                                </a>
+                                @* V-09 FIX: POST not GET, with antiforgery *@
+                                <form method="post" action="@Url.Action("RemoveRelationship", "Relationship", new { relationName = relationship.relationName })" style="display:inline;" onsubmit="return confirm('Delete relationship @Html.Encode(relationship.relationName)?')">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" style="background:none;border:none;"><span aria-hidden="true">&times;</span></button>
+                                </form>
                             </button>
                         </li>
                     }
@@ -93,11 +86,15 @@
     </div>
 
     <script>
-        // Function to send relationship data to server as JSON
         function createRelationship() {
             var sourceEntity = document.getElementById("sourceEntity").value;
             var targetEntity = document.getElementById("targetEntity").value;
             var relationshipType = document.getElementById("relationshipType").value;
+
+            if (sourceEntity === targetEntity) {
+                showAlert("Source and target must differ", "alert-danger");
+                return;
+            }
 
             var relationship = {
                 SourceEntity: sourceEntity,
@@ -105,35 +102,36 @@
                 Type: relationshipType
             };
 
-            console.log(relationship);
+            var tokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
+            var token = tokenInput ? tokenInput.value : "";
 
-            // Send the data to the server as JSON
             fetch("/relationship/add-relationship", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "RequestVerificationToken": token
                 },
                 body: JSON.stringify(relationship)
             })
-            .then(response => {
+            .then(async response => {
                 if (response.ok) {
                     showAlert("Relationship created successfully!", "alert-success");
                     window.location.reload();   
                     return response.json();
                 } else {
-                    showAlert("Error creating relationship.", "alert-danger");
-                    throw new Error("Error creating relationship");
+                    var err = await response.text();
+                    showAlert("Error: " + err, "alert-danger");
+                    throw new Error(err);
                 }
             })
             .then(data => console.log(data))
             .catch(error => console.error("Error:", error));
         }
 
-        // Function to show alert messages
         function showAlert(message, alertClass) {
             var alertDiv = document.getElementById("alertMessage");
             alertDiv.className = `alert ${alertClass}`;
-            alertDiv.textContent = message;
+            alertDiv.textContent = message; // textContent, not innerHTML
             alertDiv.style.display = "block";
             setTimeout(() => {
                 alertDiv.style.display = "none";

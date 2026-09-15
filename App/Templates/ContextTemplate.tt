@@ -1,4 +1,4 @@
-﻿<#@ template language="C#" #>
+<#@ template language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
@@ -26,8 +26,25 @@ public partial class evalContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-                optionsBuilder.UseNpgsql("Host=localhost;Database=evaluation;Username=postgres;Password=root;");
-                optionsBuilder.UseLazyLoadingProxies();
+        if (!optionsBuilder.IsConfigured)
+        {
+            // V-08 FIX: Removed hardcoded credentials. Use environment variable or configuration.
+            // Set via: export ASPIFY_CONNECTIONSTRING="Host=localhost;Database=evaluation;Username=postgres;Password=YOUR_SECURE_PASSWORD"
+            // Or via appsettings.json ConnectionStrings:DefaultConnection
+            var connectionString = Environment.GetEnvironmentVariable("ASPIFY_CONNECTIONSTRING");
+            if (!string.IsNullOrEmpty(connectionString))
+            {
+                optionsBuilder.UseNpgsql(connectionString);
+            }
+            else
+            {
+                // Fallback to configuration - caller must provide via DbContextOptions
+                // Do NOT hardcode passwords here
+                throw new InvalidOperationException(
+                    "Database connection string not configured. Set ASPIFY_CONNECTIONSTRING environment variable or configure via AddDbContext.");
+            }
+        }
+        optionsBuilder.UseLazyLoadingProxies();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -58,7 +75,7 @@ public partial class evalContext : DbContext
 
 <# foreach(Entity entity in entityCollection.Entities) {#>
     public virtual DbSet<<#= entity.Name #>> <#=  entity.Name+'s'#> { get; set; }
-<#}#>
+<#}%>
     
 
 }
