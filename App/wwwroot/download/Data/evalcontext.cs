@@ -20,7 +20,11 @@ public partial class evalContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-                optionsBuilder.UseNpgsql("Host=localhost;Database=evaluation;Username=postgres;Password=root;");
+                var connectionString = Environment.GetEnvironmentVariable("ASPIFY_CONNECTIONSTRING");
+                if (!string.IsNullOrEmpty(connectionString))
+                    optionsBuilder.UseNpgsql(connectionString);
+                else
+                    throw new InvalidOperationException("Connection string not configured. Set ASPIFY_CONNECTIONSTRING.");
                 optionsBuilder.UseLazyLoadingProxies();
     }
 

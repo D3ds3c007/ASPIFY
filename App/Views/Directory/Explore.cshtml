@@ -137,10 +137,15 @@
         });
         
 
-        // Function to fetch file content
+        // V-01 FIX: validate filename before fetch to block traversal client-side (server also validates)
         function fetchFileContent(fileName) {
+            if (!/^[A-Za-z0-9_]+\.cs$/.test(fileName)) {
+                console.error('Invalid file name blocked: ', fileName);
+                editor.setValue("// Invalid file name - blocked for security");
+                return;
+            }
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'content/'+fileName, true);
+            xhr.open('GET', 'content/'+encodeURIComponent(fileName), true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
@@ -148,6 +153,7 @@
                         editor.setValue(fileContent);
                     } else {
                         console.error('Error fetching file content:', xhr.statusText);
+                        editor.setValue("// Error loading file (not found or access denied)");
                     }
                 }
             };

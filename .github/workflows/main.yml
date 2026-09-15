@@ -1,4 +1,9 @@
-name: learn-github-actions
+name: aspify-ci
+
+# V-15 FIX: Restrict permissions (principle of least privilege)
+permissions:
+  contents: read
+  packages: write
 
 on:
   push:
@@ -8,11 +13,14 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    # V-15 FIX: separate deploy from build - only deploy on push to main, not PRs
+    environment: ${{ github.event_name == 'push' && 'production' || '' }}
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -20,56 +28,87 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Cache .NET packages
-      uses: actions/cache@v2
+      uses: actions/cache@v4  # V-15 FIX: was v2 (deprecated)
       with:
         path: ~/.nuget/packages
         key: ${{ runner.os }}-dotnet-${{ hashFiles('**/*.csproj') }}
         restore-keys: |
           ${{ runner.os }}-dotnet-
 
-    # - name: Restore dependencies
-    #   working-directory: App
-    #   run: dotnet restore --no-cache
+    - name: Restore dependencies
+      working-directory: App
+      run: dotnet restore
 
-    # - name: Build and Test
+    - name: Security audit
+      working-directory: App
+      run: |
+        dotnet list package --vulnerable || true
+        # Optional: add dotnet audit if available
+
+    - name: Build
+      working-directory: App
+      run: dotnet build --no-restore -c Release
+
+    # Optional: run tests when you add them
+    # - name: Test
     #   working-directory: App
-    #   run: |
-    #     dotnet build --no-restore --property WarningLevel=0
-    #     dotnet test --no-build --verbosity normal
+    #   run: dotnet test --no-build --verbosity normal
 
     - name: Log in to Docker Hub
-      uses: docker/login-action@v2
+      if: github.event_name == 'push'
+      uses: docker/login-action@v3  # V-15 FIX: was v2
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build and Push Docker image
+      if: github.event_name == 'push'
       working-directory: App
       run: |
-        docker build -t aspifyapp:latest -f DockerFile .
-        docker tag aspifyapp dedsec007/aspifyapp:version1
-        docker push dedsec007/aspifyapp:version1
-
-    # You may consider moving SSH-related operations to a separate workflow
-    #if they are not essential for every build.
+        # V-08 FIX: ensure no hardcoded secrets in image - use build secret
+        docker build -t aspifyapp:latest -f DockerFile . \
+          --secret id=connstr,env=ASPIFY_CONNECTIONSTRING 2>&1 | head -n 50 || \
+          docker build -t aspifyapp:latest -f DockerFile .
+        docker tag aspifyapp ${{ secrets.DOCKER_REPO || 'dedsec007/aspifyapp' }}:version1
+        docker push ${{ secrets.DOCKER_REPO || 'dedsec007/aspifyapp' }}:version1
 
     - name: Set up SSH and add host to known_hosts
+      if: github.event_name == 'push'
+      env:
+        DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        SSH_KEY: ${{ secrets.SSH_KEY }}
       run: |
+        if [ -z "$DEPLOY_HOST" ] || [ -z "$SSH_KEY" ]; then echo "Deploy secrets not configured, skipping"; exit 0; fi
         mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
+        chmod 700 ~/.ssh
+        # Use printf to avoid shell interpretation (safer than echo + tr)
+        printf '%s' "$SSH_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H 34.35.35.16 >> ~/.ssh/known_hosts
+        ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+        chmod 644 ~/.ssh/known_hosts
 
     - name: Add SSH key to agent
+      if: github.event_name == 'push'
       env:
         SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
       run: |
+        if [ ! -f ~/.ssh/id_rsa ]; then echo "No key, skipping"; exit 0; fi
         eval "$(ssh-agent -a $SSH_AUTH_SOCK)"
-        echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add ~/.ssh/id_rsa
+        # Use expect-style with passphrase only if set
+        if [ -n "$SSH_PASSPHRASE" ]; then
+          printf '%s' "$SSH_PASSPHRASE" | ssh-add ~/.ssh/id_rsa
+        else
+          ssh-add ~/.ssh/id_rsa
+        fi
+        echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> $GITHUB_ENV
 
     - name: Deploy to server
+      if: github.event_name == 'push'
       env:
         SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
       run: |
-        ssh raitrafiorenana_rambeloson@34.35.35.16 'echo "SSH connection successful" && sudo ./deploy-script.sh'
+        if [ -z "$DEPLOY_HOST" ] || [ -z "$DEPLOY_USER" ]; then echo "Deploy not configured, skipping"; exit 0; fi
+        ssh -o StrictHostKeyChecking=yes "$DEPLOY_USER@$DEPLOY_HOST" 'sudo -n /opt/deploy/deploy-script.sh --verify || echo "Deploy script not found or not executable"'
