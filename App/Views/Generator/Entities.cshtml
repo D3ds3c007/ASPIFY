@@ -341,8 +341,7 @@
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "RequestVerificationToken": token // matches Program.cs HeaderName = X-XSRF-TOKEN? but AutoValidate expects RequestVerificationToken
-          // Actually use: "X-XSRF-TOKEN": token
+          "X-XSRF-TOKEN": token // matches Program.cs HeaderName configuration
         },
         body: JSON.stringify(entity)
       })

@@ -176,7 +176,7 @@
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "RequestVerificationToken": token
+                    "X-XSRF-TOKEN": token // matches Program.cs HeaderName configuration
                 },
                 body: JSON.stringify(relationship)
             })
